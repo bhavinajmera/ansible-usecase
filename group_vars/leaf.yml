@@ -1,0 +1,9 @@
+---
+login_info:
+  username: admin
+  password: Test@123
+
+leaf_ports:
+  - Ethernet1/5
+  - Ethernet1/6
+

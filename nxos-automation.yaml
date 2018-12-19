@@ -1,0 +1,26 @@
+---
+
+- name: sample playbook
+  hosts: cisco
+  gather_facts: no
+  vars_files:
+    - "group_vars/leaf.yml"
+
+  tasks:
+
+    - name: default interfaces
+      nxos_interface: interface={{ item }} state=default host={{ inventory_hostname }} provider="{{login_info}}"
+      with_items:
+        - Ethernet1/4
+        - Ethernet1/5
+
+    # Ensure an interface is a Layer 3 port and that it has the proper description
+    - name: config interface
+      nxos_interface: interface={{ item }} description='Configured by Ansible' mode=layer3 host={{ inventory_hostname }} provider="{{login_info}}"
+      with_items:
+        - "{{ leaf_ports }}"
+
+
+    # Admin down an interface
+#    - nxos_interface: interface=Ethernet1/2 admin_state=up host={{ inventory_hostname }} provider="{{login_info}}"
+

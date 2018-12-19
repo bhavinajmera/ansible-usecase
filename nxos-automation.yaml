@@ -11,8 +11,7 @@
     - name: default interfaces
       nxos_interface: interface={{ item }} state=default host={{ inventory_hostname }} provider="{{login_info}}"
       with_items:
-        - Ethernet1/4
-        - Ethernet1/5
+        - "{{ leaf_ports }}"
 
     # Ensure an interface is a Layer 3 port and that it has the proper description
     - name: config interface

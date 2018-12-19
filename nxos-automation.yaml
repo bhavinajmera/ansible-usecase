@@ -1,7 +1,6 @@
 ---
 
 - name: sample playbook
-  hosts: cisco
   gather_facts: no
   vars_files:
     - "group_vars/leaf.yml"
